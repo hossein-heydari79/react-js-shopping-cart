@@ -21,7 +21,7 @@ function App() {
     size: "ALL"
   })
 
-  // let arr = [...json];
+  const [cardlist, setCardlist] = useState([])
 
   useEffect(() => {
 
@@ -60,16 +60,22 @@ function App() {
           <div className="card-section">
             {
               json.map((item, index) => (
-                <Card key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} />
+                <Card key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} cardlist={cardlist} setCardlist={setCardlist} />
               ))
             }
           </div>
         </div>
 
         <div className="right">
-          <Menubar />
-          <Cardlist />
-          <Pay />
+          <Menubar cardlist={cardlist} />
+          {
+            cardlist.map((item) => (
+              <Cardlist key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} count={item.count} cardlist={cardlist} setCardlist={setCardlist} />
+            ))
+          }
+          {
+            cardlist.length != 0 && < Pay cardlist={cardlist} />
+          }
         </div>
       </div>
 
