@@ -1,0 +1,8 @@
+.menu {
+    height: 60px;
+    border-bottom: 1px solid rgb(192, 192, 192);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}

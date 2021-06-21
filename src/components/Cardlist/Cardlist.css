@@ -1,0 +1,28 @@
+.card-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-card-chooiced {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count button {
+    padding: 10px;
+    color: black;
+    outline: none;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    margin-left: 10px;
+}
