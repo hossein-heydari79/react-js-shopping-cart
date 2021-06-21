@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 0;
+    margin: 10px 0;
     animation: 0.5s fade ease-in;
 }
 

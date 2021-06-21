@@ -7,6 +7,7 @@ import { Menubar } from './components/Menubar/Menubar'
 import { Cardlist } from './components/Cardlist/Cardlist'
 import { Pay } from './components/Pay/Pay'
 import { Form } from './components/Form/Form'
+import { Modals } from './components/Modals/Modals'
 import data from './data/data.js'
 import { useState, useEffect } from 'react'
 
@@ -27,6 +28,34 @@ function App() {
   const [mode, setMode] = useState({
     show: false
   })
+
+
+  const [show, setShow] = useState({
+    show: false
+  })
+
+  let showModal = () => {
+    setShow({
+      show: true
+    })
+  }
+
+  let hideModal = () => {
+    setShow({
+      show: false
+    })
+  }
+
+
+  const [dataModal, setDataModal] = useState({
+    url: "",
+    id: "",
+    title: "",
+    des: "",
+    price: "",
+    sizes: []
+  })
+
 
 
   useEffect(() => {
@@ -57,6 +86,11 @@ function App() {
   return (
     <>
 
+
+      {
+        show.show && < Modals show={showModal} hide={hideModal} datamodal={dataModal} cardlist={cardlist} setCardlist={setCardlist} />
+      }
+
       <Header />
 
       <div className="main">
@@ -66,7 +100,7 @@ function App() {
           <div className="card-section">
             {
               json.map((item, index) => (
-                <Card key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} cardlist={cardlist} setCardlist={setCardlist} />
+                <Card key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} cardlist={cardlist} setCardlist={setCardlist} show={showModal} hide={hideModal} datamodal={dataModal} setdatamodal={setDataModal} />
               ))
             }
           </div>
@@ -80,11 +114,11 @@ function App() {
             ))
           }
           {
-            cardlist.length != 0 && < Pay cardlist={cardlist} mode={mode} setmode={setMode} />
+            cardlist.length !== 0 && < Pay cardlist={cardlist} mode={mode} setmode={setMode} />
           }
 
           {
-            cardlist.length != 0 && mode.show && <Form />
+            cardlist.length !== 0 && mode.show && <Form />
           }
 
 

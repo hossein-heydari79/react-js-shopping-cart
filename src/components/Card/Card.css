@@ -10,6 +10,14 @@
     animation: 0.5s fadeIn ease-in;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
+.card:hover>p {
+    color: rgb(255, 145, 36);
+}
+
 .addToCard {
     display: flex;
     justify-content: space-between;
