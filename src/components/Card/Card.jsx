@@ -1,14 +1,14 @@
 import React from 'react'
 import './Card.css'
 
-export const Card = () => {
+export const Card = ({ id, url, description, price }) => {
     return (
 
         <div className="card">
-            <img src="https://react-shopping-cart-seven-lovat.vercel.app/images/dress1.jpg" className="card-img" />
-            <p>Midi sundress with shirring detail</p>
+            <img src={url} className="card-img" />
+            <p>{description}</p>
             <div className="addToCard">
-                <p>$29.9</p>
+                <p>${price}</p>
                 <button>Add To Card</button>
             </div>
         </div>

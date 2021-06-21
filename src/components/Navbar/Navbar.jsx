@@ -1,22 +1,30 @@
 import React from 'react'
 import './Navbar.css'
 
-export const Navbar = () => {
+export const Navbar = ({ filter, setfilter, len }) => {
+
+
+    function change(e) {
+        setfilter({ ...filter, [e.target.name]: e.target.value })
+    }
+
+
+
+
     return (
         <div className="menu">
-            <div>6 Products</div>
+            <div>{len} Products</div>
             <div>
                 <span>Order </span>
-                <select name="" id="">
-                    <option value="latest">Latest</option>
+                <select onChange={change} value={filter.price} name="price" id="">
                     <option value="lowest">Lowest</option>
                     <option value="highes">Highest</option>
                 </select>
             </div>
             <div>
                 <span>Filter </span>
-                <select name="" id="">
-                    <option value="">All</option>
+                <select name="size" onChange={change} value={filter.size} id="">
+                    <option value="ALL">All</option>
                     <option value="XS">XS</option>
                     <option value="S">S</option>
                     <option value="M">M</option>

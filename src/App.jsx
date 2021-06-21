@@ -6,8 +6,48 @@ import { Card } from './components/Card/Card'
 import { Menubar } from './components/Menubar/Menubar'
 import { Cardlist } from './components/Cardlist/Cardlist'
 import { Pay } from './components/Pay/Pay'
+import data from './data/data.js'
+import { useState, useEffect } from 'react'
+
 
 function App() {
+
+
+
+  const [json, setJson] = useState(data.sort((a, b) => a.price - b.price));
+
+  const [filter, setFilter] = useState({
+    price: "lowest",
+    size: "ALL"
+  })
+
+  // let arr = [...json];
+
+  useEffect(() => {
+
+    let arr = [];
+
+    label: for (let i = 0; i < data.length; i++) {
+      for (let h = 0; h < data[i].size.length; h++) {
+        if (data[i].size[h] === filter.size) {
+          arr.push(data[i]);
+          continue label;
+        }
+      }
+    }
+
+
+    if (filter.price === "lowest") {
+      setJson(arr.sort((a, b) => a.price - b.price));
+    }
+    else {
+      setJson(arr.sort((a, b) => b.price - a.price));
+    }
+
+  }, [filter])
+
+
+
   return (
     <>
 
@@ -16,11 +56,13 @@ function App() {
       <div className="main">
         <div className="left">
 
-          <Navbar />
+          <Navbar filter={filter} setfilter={setFilter} len={json.length} />
           <div className="card-section">
-            <Card />
-            <Card />
-            <Card />
+            {
+              json.map((item, index) => (
+                <Card key={item.id} id={item.id} url={item.url} description={item.description} price={item.price} />
+              ))
+            }
           </div>
         </div>
 
