@@ -6,6 +6,7 @@ import { Card } from './components/Card/Card'
 import { Menubar } from './components/Menubar/Menubar'
 import { Cardlist } from './components/Cardlist/Cardlist'
 import { Pay } from './components/Pay/Pay'
+import { Form } from './components/Form/Form'
 import data from './data/data.js'
 import { useState, useEffect } from 'react'
 
@@ -22,6 +23,11 @@ function App() {
   })
 
   const [cardlist, setCardlist] = useState([])
+
+  const [mode, setMode] = useState({
+    show: false
+  })
+
 
   useEffect(() => {
 
@@ -74,8 +80,14 @@ function App() {
             ))
           }
           {
-            cardlist.length != 0 && < Pay cardlist={cardlist} />
+            cardlist.length != 0 && < Pay cardlist={cardlist} mode={mode} setmode={setMode} />
           }
+
+          {
+            cardlist.length != 0 && mode.show && <Form />
+          }
+
+
         </div>
       </div>
 

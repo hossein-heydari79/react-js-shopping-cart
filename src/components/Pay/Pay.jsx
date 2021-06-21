@@ -1,8 +1,14 @@
 import React from 'react'
 import './Pay.css'
 
-export const Pay = ({ cardlist }) => {
+export const Pay = ({ cardlist, mode, setmode }) => {
 
+
+    function change() {
+        setmode({
+            show: true
+        })
+    }
 
 
     let total = 0;
@@ -14,7 +20,7 @@ export const Pay = ({ cardlist }) => {
     return (
         <div className="pay">
             <p>Total: ${total.toFixed(2)}</p>
-            <button>Proceed</button>
+            <button onClick={change}>Proceed</button>
         </div>
     )
 }

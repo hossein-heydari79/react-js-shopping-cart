@@ -7,7 +7,6 @@ export const Cardlist = ({ id, url, description, price, count, cardlist, setCard
     function remove() {
         let index = cardlist.findIndex((item, index) => item.id === id);
         let arr = [...cardlist];
-
         if (arr[index].count === 1) {
             arr.splice(index, 1);
         }
